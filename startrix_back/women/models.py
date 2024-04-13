@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class AuthGroup(models.Model):
@@ -262,3 +263,25 @@ class LinkedinRawSearchPeople(models.Model):
     class Meta:
         managed = False
         db_table = 'linkedin_raw_search_people'
+
+
+class AllSourceUsersEnriched(models.Model):
+    utc_update_time = models.CharField(blank=True, null=True)
+    user_id = models.CharField(primary_key=True)
+    source_user_id = models.CharField(blank=True, null=True)
+    first_name = models.CharField(blank=True, null=True)
+    last_name = models.CharField(blank=True, null=True)
+    jobtitle = models.CharField(blank=True, null=True)
+    programming_languages = ArrayField(models.CharField(blank=True, null=True))  # This field type is a guess.
+    country = models.CharField(blank=True, null=True)
+    city = models.CharField(blank=True, null=True)
+    source = models.CharField(blank=True, null=True)
+    description = models.CharField(blank=True, null=True)
+    contacts = ArrayField(models.CharField(blank=True, null=True, default=0))  # This field type is a guess.
+    image_url = models.CharField(blank=True, null=True)
+    experience_months = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'all_source_users_enriched'
+

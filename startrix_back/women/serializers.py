@@ -12,3 +12,9 @@ class LanguageSerializer(serializers.ModelSerializer):
         model = GithubRawUsers
         fields = ('name', 'location', 'avatar_url', 'socials', 'email')
 
+
+class AllSourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AllSourceUsersEnriched
+        fields = ('user_id', 'first_name', 'last_name', 'jobtitle', 'programming_languages', 'country', 'city', 'source',
+                  'description', 'contacts', 'image_url', 'experience_months')
