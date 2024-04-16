@@ -21,5 +21,5 @@ from women.views import AllSourceCityViewSet, GitHubLanguageViewSet
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/userlanguage/', GitHubLanguageViewSet.as_view({'get': 'list'})),
-    path('api/v1/usercity/', AllSourceCityViewSet.as_view({'get': 'list'})),
+    path('api/v1/userdata/', AllSourceCityViewSet.as_view({'get': 'list'})),
 ]

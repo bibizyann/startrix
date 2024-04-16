@@ -20,15 +20,9 @@ class GitHubLanguageViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class AllSourceCityViewSet(viewsets.ReadOnlyModelViewSet):
-    def to_valid(self, data):
-        if data is not None:
-            return data.split(',')
-        else:
-            return ""
-
     def get_queryset(self):
-        city = self.to_valid(self.request.query_params.get("city"))
-        language = self.to_valid(self.request.query_params.get("language"))
+        city = self.request.query_params.getlist('city')
+        language = self.request.query_params.getlist("language")
         queryset = AllSourceUsersEnriched.objects.filter(city__in=city, programming_languages__contains=language)
         return queryset
 
