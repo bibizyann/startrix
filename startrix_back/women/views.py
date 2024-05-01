@@ -23,7 +23,9 @@ class AllSourceCityViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         city = self.request.query_params.getlist('city')
         language = self.request.query_params.getlist("language")
-        queryset = AllSourceUsersEnriched.objects.filter(city__in=city, programming_languages__contains=language)
+        job = self.request.query_params.get("job")
+        queryset = AllSourceUsersEnriched.objects.filter(city__in=city, jobtitle__icontains=job,
+                                                         programming_languages__contains=language)
         return queryset
 
     serializer_class = AllSourceSerializer
