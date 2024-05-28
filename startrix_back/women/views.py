@@ -30,17 +30,18 @@ class AllSourceCityViewSet(viewsets.ReadOnlyModelViewSet):
         city = self.request.query_params.getlist('city')
         language = self.request.query_params.getlist("language")
         job = self.request.query_params.get("job")
+        user_id = self.request.query_params.getlist("id")
         queryset = AllSourceUsersEnriched.objects.all()
-
         # Формируем условия для фильтрации
         conditions = Q()  # Пустой Q-объект
-
         if city:
             conditions &= Q(city__in=city)
         if job:
             conditions &= Q(jobtitle__icontains=job)
         if language:
             conditions &= Q(programming_languages__contains=language)
+        if user_id:
+            conditions &= Q(user_id__in=user_id)
 
         # Применяем условия к queryset
         if conditions:
