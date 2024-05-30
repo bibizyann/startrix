@@ -284,4 +284,5 @@ class AllSourceUsersEnriched(models.Model):
     class Meta:
         managed = True
         db_table = 'all_source_users_enriched'
+        ordering = ('programming_languages',)
 
