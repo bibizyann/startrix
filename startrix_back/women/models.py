@@ -280,6 +280,7 @@ class AllSourceUsersEnriched(models.Model):
     contacts = ArrayField(models.CharField(blank=True, null=True, default=0))  # This field type is a guess.
     image_url = models.CharField(blank=True, null=True)
     experience_months = models.IntegerField(blank=True, null=True)
+    gh_link = models.CharField(blank=True, null=True)
 
     class Meta:
         managed = True

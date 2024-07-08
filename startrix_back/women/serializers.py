@@ -16,5 +16,4 @@ class LanguageSerializer(serializers.ModelSerializer):
 class AllSourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = AllSourceUsersEnriched
-        fields = ('user_id', 'first_name', 'last_name', 'jobtitle', 'programming_languages', 'country', 'city', 'source',
-                  'description', 'contacts', 'image_url', 'experience_months')
+        exclude = ('utc_update_time', 'source_user_id')
